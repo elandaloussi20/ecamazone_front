@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import SignIn from './components/SignIn';
+import LogIn from './components/LogIn';
+import UserInfo from './components/UserInfo';
+import { AuthProvider } from './components/AuthContext';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+    return (
+        <AuthProvider>
+<Router>
+    <Routes>
+        <Route path="/sign-in" element={<SignIn />} />
+        <Route path="/log-in" element={<LogIn />} />
+        <Route path="/user-info" element={<UserInfo />} />
+        {/* Redirection vers LogIn si aucune route ne correspond */}
+        <Route path="*" element={<Navigate to="/log-in" replace />} />
+    </Routes>
+</Router>
+        </AuthProvider>
+    );
+};
 
 export default App;
