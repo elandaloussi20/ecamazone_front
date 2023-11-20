@@ -1,12 +1,29 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import './style.css';
+
+
 
 const SignIn = () => {
+    const [message, setMessage] = useState('');
+    const navigate = useNavigate();
+    const handleGoToLogin = () => {
+        navigate('/log-in'); // Assurez-vous que le chemin est correct
+    };
+
+
     const [formData, setFormData] = useState({
         username: '',
+        fullName: '',
         email: '',
-        address: '',
-        paymentMethod: '',
+        phoneNumber: '',
+        shippingAddress: '',
+        billingAddress: '',
+        cardHolderName: '',
+        cardLastFourDigits: '',
+        cardExpirationDate: '',
+        cardType: '',
         password: ''
     });
 
@@ -18,23 +35,34 @@ const SignIn = () => {
         e.preventDefault();
         try {
             await axios.post('http://localhost:3000/users', formData);
-            // Implémentez une redirection ou affichez un message de confirmation ici
+            setMessage('Inscription réussie. Vous pouvez maintenant vous connecter.'); // Afficher le message de confirmation
         } catch (error) {
             console.error(error);
+            setMessage('Erreur lors de l\'inscription.'); // Afficher un message d'erreur
         }
     };
 
     return (
-        <div>
+        <div className="container">
             <h2>Inscription</h2>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label htmlFor="username">Nom d'utilisateur :</label>
+                    <label htmlFor="username">username :</label>
                     <input
                         type="text"
                         id="username"
                         name="username"
                         value={formData.username}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="fullName">fullName :</label>
+                    <input
+                        type="text"
+                        id="fullName"
+                        name="fullName"
+                        value={formData.fullName}
                         onChange={handleChange}
                     />
                 </div>
@@ -49,22 +77,72 @@ const SignIn = () => {
                     />
                 </div>
                 <div>
-                    <label htmlFor="address">Adresse :</label>
+                    <label htmlFor="phoneNumber">phoneNumber :</label>
                     <input
                         type="text"
-                        id="address"
-                        name="address"
-                        value={formData.address}
+                        id="phoneNumber"
+                        name="phoneNumber"
+                        value={formData.phoneNumber}
                         onChange={handleChange}
                     />
                 </div>
                 <div>
-                    <label htmlFor="paymentMethod">Méthode de paiement :</label>
+                    <label htmlFor="shippingAddress">shippingAddress :</label>
                     <input
                         type="text"
-                        id="paymentMethod"
-                        name="paymentMethod"
-                        value={formData.paymentMethod}
+                        id="shippingAddress"
+                        name="shippingAddress"
+                        value={formData.shippingAddress}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="billingAddress">billingAddress :</label>
+                    <input
+                        type="text"
+                        id="billingAddress"
+                        name="billingAddress"
+                        value={formData.billingAddress}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="cardHolderName">cardHolderName :</label>
+                    <input
+                        type="text"
+                        id="cardHolderName"
+                        name="cardHolderName"
+                        value={formData.cardHolderName}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="cardLastFourDigits">cardLastFourDigits :</label>
+                    <input
+                        type="text"
+                        id="cardLastFourDigits"
+                        name="cardLastFourDigits"
+                        value={formData.cardLastFourDigits}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="cardExpirationDate">cardExpirationDate :</label>
+                    <input
+                        type="text"
+                        id="cardExpirationDate"
+                        name="cardExpirationDate"
+                        value={formData.cardExpirationDate}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="cardType">cardType :</label>
+                    <input
+                        type="text"
+                        id="cardType"
+                        name="cardType"
+                        value={formData.cardType}
                         onChange={handleChange}
                     />
                 </div>
@@ -78,8 +156,15 @@ const SignIn = () => {
                         onChange={handleChange}
                     />
                 </div>
-                <button type="submit">Inscrire</button>
+                <button type="submit">S'inscrire</button>
+                {message && <p>{message}</p>} {/* Affichage du message */}
+
             </form>
+            <div>
+            <button type="button" onClick={handleGoToLogin}>Se connecter</button> {/* Ajout du bouton pour revenir à la connexion */}
+
+            </div>
+
         </div>
     );
 };

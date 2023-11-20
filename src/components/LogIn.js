@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from './AuthContext';
+import './style.css';
 
 const LogIn = () => {
     const navigate = useNavigate();
@@ -11,20 +12,29 @@ const LogIn = () => {
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
+    const handleGoToSignUp = () => {
+        navigate('/sign-in'); // Assurez-vous que le chemin est correct
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             const response = await axios.post('http://localhost:3000/login', formData);
-            login({ id: response.data.id }); // Mise à jour de l'état d'authentification
-            navigate('/user-info'); // Navigation vers la page des informations de l'utilisateur
+            if (response.status === 200) {
+                login({ id: response.data.id }); // Mise à jour de l'état d'authentification avec l'ID
+                navigate('/user-info'); // Navigation vers la page des informations de l'utilisateur
+            } else {
+                // Gérer les autres réponses
+            }
         } catch (error) {
             console.error(error);
+            // Afficher un message d'erreur à l'utilisateur
         }
     };
+    
 
     return (
-        <div>
+        <div className="container">
             <h2>Connexion</h2>
             <form onSubmit={handleSubmit}>
                 <div>
@@ -49,6 +59,9 @@ const LogIn = () => {
                 </div>
                 <button type="submit">Se connecter</button>
             </form>
+            <div>
+            <button type="button" onClick={handleGoToSignUp}>S'inscrire</button> {/* Ajout du bouton */}
+            </div>
         </div>
     );
 };
