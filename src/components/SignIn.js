@@ -19,11 +19,6 @@ const SignIn = () => {
         email: '',
         phoneNumber: '',
         shippingAddress: '',
-        billingAddress: '',
-        cardHolderName: '',
-        cardLastFourDigits: '',
-        cardExpirationDate: '',
-        cardType: '',
         password: ''
     });
 
@@ -35,7 +30,7 @@ const SignIn = () => {
         e.preventDefault();
         try {
             await axios.post('http://localhost:3000/users', formData);
-            setMessage('Inscription réussie. Vous pouvez maintenant vous connecter.'); // Afficher le message de confirmation
+            setMessage('Inscription réussie.'); // Afficher le message de confirmation
         } catch (error) {
             console.error(error);
             setMessage('Erreur lors de l\'inscription.'); // Afficher un message d'erreur
@@ -93,56 +88,6 @@ const SignIn = () => {
                         id="shippingAddress"
                         name="shippingAddress"
                         value={formData.shippingAddress}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="billingAddress">billingAddress :</label>
-                    <input
-                        type="text"
-                        id="billingAddress"
-                        name="billingAddress"
-                        value={formData.billingAddress}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="cardHolderName">cardHolderName :</label>
-                    <input
-                        type="text"
-                        id="cardHolderName"
-                        name="cardHolderName"
-                        value={formData.cardHolderName}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="cardLastFourDigits">cardLastFourDigits :</label>
-                    <input
-                        type="text"
-                        id="cardLastFourDigits"
-                        name="cardLastFourDigits"
-                        value={formData.cardLastFourDigits}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="cardExpirationDate">cardExpirationDate :</label>
-                    <input
-                        type="text"
-                        id="cardExpirationDate"
-                        name="cardExpirationDate"
-                        value={formData.cardExpirationDate}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="cardType">cardType :</label>
-                    <input
-                        type="text"
-                        id="cardType"
-                        name="cardType"
-                        value={formData.cardType}
                         onChange={handleChange}
                     />
                 </div>
