@@ -8,6 +8,8 @@ const LogIn = () => {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({ username: '', password: '' });
     const { login } = useContext(AuthContext);
+    const backendUrl = "http://127.0.0.1:53876";
+
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -19,7 +21,9 @@ const LogIn = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:3000/login', formData);
+            //const response = await axios.post('http://localhost:3000/login', formData);
+            const response = await axios.post(`${backendUrl}/login`, formData);
+
             if (response.status === 200) {
                 login({ id: response.data.id }); // Mise à jour de l'état d'authentification avec l'ID
                 navigate('/user-info'); // Navigation vers la page des informations de l'utilisateur

@@ -21,6 +21,8 @@ const SignIn = () => {
         shippingAddress: '',
         password: ''
     });
+    const backendUrl = "http://127.0.0.1:53876";
+
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -29,7 +31,9 @@ const SignIn = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:3000/users', formData);
+            //await axios.post('http://localhost:3000/users', formData);
+            await axios.post(`${backendUrl}/users`, formData);
+
             setMessage('Inscription réussie.'); // Afficher le message de confirmation
         } catch (error) {
             console.error(error);
