@@ -21,7 +21,7 @@ const SignIn = () => {
         shippingAddress: '',
         password: ''
     });
-    const backendUrl = "http://127.0.0.1:53876";
+    const backendUrl = "http://127.0.0.1:3000";
 
 
     const handleChange = (e) => {

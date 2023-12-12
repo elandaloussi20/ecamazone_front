@@ -18,7 +18,7 @@ const UserInfo = () => {
         user_id: authUser.id
     });
     const [showPaymentForm, setShowPaymentForm] = useState(false);
-    const backendUrl = "http://127.0.0.1:53876";
+    const backendUrl = "http://127.0.0.1:3000";
 
     useEffect(() => {
         if (authUser && authUser.id) {

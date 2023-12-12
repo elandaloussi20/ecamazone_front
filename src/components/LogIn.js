@@ -8,7 +8,7 @@ const LogIn = () => {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({ username: '', password: '' });
     const { login } = useContext(AuthContext);
-    const backendUrl = "http://127.0.0.1:53876";
+    const backendUrl = "http://127.0.0.1:3000";
 
 
     const handleChange = (e) => {
