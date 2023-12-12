@@ -30,7 +30,7 @@ jobs:
       uses: docker/build-push-action@v5
       with:
         push: true
-        tags: docchai/ecamazon_users_front:latest
+        tags: anouarelanda/monapp-react:latest
         context: .
       
  
