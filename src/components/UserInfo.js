@@ -7,11 +7,10 @@ import './style.css';
 const UserInfo = () => {
     const [userInfo, setUserInfo] = useState(null);
     const [editableInfo, setEditableInfo] = useState(null);
-    const [updateMessage, setUpdateMessage] = useState(''); // État pour le message de confirmation
-    const [Message, setMessage] = useState(''); // État pour le message de confirmation
-
+    const [updateMessage, setUpdateMessage] = useState(''); 
+    const [Message, setMessage] = useState(''); 
     const { authUser, logout } = useContext(AuthContext);
-    const navigate = useNavigate(); // Utilisez useNavigate pour la redirection
+    const navigate = useNavigate(); 
     const [paymentInfo, setPaymentInfo] = useState({
         type: '',
         cardNumber: '',
