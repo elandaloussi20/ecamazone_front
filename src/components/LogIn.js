@@ -8,6 +8,8 @@ const LogIn = () => {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({ username: '', password: '' });
     const { login } = useContext(AuthContext);
+    const [errorMessage, setErrorMessage] = useState('');
+
     const backendUrl = "http://127.0.0.1:3000";
 
 
@@ -32,6 +34,8 @@ const LogIn = () => {
             }
         } catch (error) {
             console.error(error);
+            setErrorMessage('Username/Password is incorrect.');
+
             // Afficher un message d'erreur à l'utilisateur
         }
     };
@@ -63,6 +67,8 @@ const LogIn = () => {
                 </div>
                 <button type="submit">Se connecter</button>
             </form>
+            {errorMessage && <p className="error-message">{errorMessage}</p>}
+
             <div>
             <button type="button" onClick={handleGoToSignUp}>S'inscrire</button> {/* Ajout du bouton */}
             </div>

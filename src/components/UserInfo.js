@@ -7,8 +7,10 @@ import './style.css';
 const UserInfo = () => {
     const [userInfo, setUserInfo] = useState(null);
     const [editableInfo, setEditableInfo] = useState(null);
+    const [showChangePasswordForm, setShowChangePasswordForm] = useState(false);
     const [updateMessage, setUpdateMessage] = useState(''); 
     const [Message, setMessage] = useState(''); 
+    const [passwords, setPasswords] = useState({ oldPassword: '', newPassword: '' });
     const { authUser, logout } = useContext(AuthContext);
     const navigate = useNavigate(); 
     const [paymentInfo, setPaymentInfo] = useState({
@@ -18,6 +20,8 @@ const UserInfo = () => {
         user_id: authUser.id
     });
     const [showPaymentForm, setShowPaymentForm] = useState(false);
+    const [messageType, setMessageType] = useState('');
+
     const backendUrl = "http://127.0.0.1:3000";
 
     useEffect(() => {
@@ -46,13 +50,19 @@ const UserInfo = () => {
             if (response.status === 200) {
                 console.log("A new payment method has been added")
                 setMessage('A new payment method has been added.'); // Message de confirmation
+                setMessageType('success');
+
             } else {
 
                 setMessage('Erreur lors de la mise à jour.'); // Message d'erreur
+                setMessageType('error');
+
             }
         } catch (error) {
             console.error(error);
             setMessage('Erreur lors de la mise à jour.'); // Message d'erreur
+            setMessageType('error');
+
         }
 
         // Ici, ajoutez la logique pour envoyer les informations de paiement au service de paiement
@@ -65,12 +75,18 @@ const UserInfo = () => {
             const response = await axios.put(`${backendUrl}/users/${authUser.id}`, editableInfo);
             if (response.status === 200) {
                 setUpdateMessage('Informations mises à jour avec succès.'); // Message de confirmation
+                setMessageType('success');
+
             } else {
                 setUpdateMessage('Erreur lors de la mise à jour.'); // Message d'erreur
+                setMessageType('error');
+
             }
         } catch (error) {
             console.error(error);
             setUpdateMessage('Erreur lors de la mise à jour.'); // Message d'erreur
+            setMessageType('error');
+
         }
     };
     const handleLogout = () => {
@@ -94,6 +110,33 @@ const UserInfo = () => {
         } catch (error) {
             console.error('Erreur lors de la suppression du compte', error);
             // Gérez les erreurs ici
+        }
+    };
+    const toggleChangePasswordForm = () => {
+        setShowChangePasswordForm(!showChangePasswordForm);
+    };
+    const handlePasswordChange = (e) => {
+        setPasswords({ ...passwords, [e.target.name]: e.target.value });
+    };
+    
+    const handleSubmitPasswordChange = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post(`${backendUrl}/change-password/${authUser.id}`, passwords);
+            if (response.status === 200) {
+                setUpdateMessage('Mot de passe mis à jour avec succès.');
+                setMessageType('success');
+
+            } else {
+                setUpdateMessage('Erreur lors de la mise à jour du mot de passe.');
+                setMessageType('error');
+
+            }
+        } catch (error) {
+            console.error(error);
+            setUpdateMessage('Erreur lors de la mise à jour du mot de passe.');
+            setMessageType('error');
+
         }
     };
 
@@ -156,7 +199,33 @@ const UserInfo = () => {
 
                 <button type="submit">Mettre à jour</button>
             </form>
-            {updateMessage && <p>{updateMessage}</p>} {/* Affichage du message */}
+            <button onClick={toggleChangePasswordForm}>Modifier le mot de passe</button>
+            {showChangePasswordForm && (
+                    <form onSubmit={handleSubmitPasswordChange}>
+                    <div>
+                        <label htmlFor="oldPassword">Ancien mot de passe :</label>
+                        <input
+                            type="password"
+                            id="oldPassword"
+                            name="oldPassword"
+                            value={passwords.oldPassword}
+                            onChange={handlePasswordChange}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="newPassword">Nouveau mot de passe :</label>
+                        <input
+                            type="password"
+                            id="newPassword"
+                            name="newPassword"
+                            value={passwords.newPassword}
+                            onChange={handlePasswordChange}
+                        />
+                    </div>
+                    <button type="submit">Changer le mot de passe</button>
+                    </form>
+            )}
+{updateMessage && <p className={`${messageType}-message`}>{updateMessage}</p>}
             <div>
 
             <button onClick={() => setShowPaymentForm(!showPaymentForm)}>
@@ -199,7 +268,8 @@ const UserInfo = () => {
         <button type="submit">Soumettre la méthode de paiement</button>
         </form>
         )}
-        {Message && <p>{Message}</p>} {/* Affichage du message */}
+        {Message && <p className={`${messageType}-message`}>{Message}</p>}
+
     <div>
     <button onClick={handleLogout}>Déconnexion</button> {/* Ajout du bouton de déconnexion */} - {/* Bouton pour supprimer le compte */}
                 <button onClick={handleDeleteAccount} className="delete-account-btn">

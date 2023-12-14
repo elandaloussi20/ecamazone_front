@@ -7,6 +7,8 @@ import './style.css';
 
 const SignIn = () => {
     const [message, setMessage] = useState('');
+    const [messageType, setMessageType] = useState('');
+
     const navigate = useNavigate();
     const handleGoToLogin = () => {
         navigate('/log-in'); // Assurez-vous que le chemin est correct
@@ -35,9 +37,13 @@ const SignIn = () => {
             await axios.post(`${backendUrl}/users`, formData);
 
             setMessage('Inscription réussie.'); // Afficher le message de confirmation
+            setMessageType('success');
+
         } catch (error) {
             console.error(error);
             setMessage('Erreur lors de l\'inscription.'); // Afficher un message d'erreur
+            setMessageType('error');
+
         }
     };
 
@@ -106,7 +112,7 @@ const SignIn = () => {
                     />
                 </div>
                 <button type="submit">S'inscrire</button>
-                {message && <p>{message}</p>} {/* Affichage du message */}
+                {message && <p className={`${messageType}-message`}>{message}</p>}
 
             </form>
             <div>
