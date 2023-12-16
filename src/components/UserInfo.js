@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react'; 
 import axios from 'axios';
 import { AuthContext } from './AuthContext';
 import { useNavigate } from 'react-router-dom'; 
 import './style.css';
 
 const UserInfo = () => {
+    const [editableMode, setEditableMode] = useState(false); //user info appears but not editable, until user clicks "update" btn
     const [userInfo, setUserInfo] = useState(null);
     const [editableInfo, setEditableInfo] = useState(null);
     const [showChangePasswordForm, setShowChangePasswordForm] = useState(false);
@@ -40,6 +41,12 @@ const UserInfo = () => {
     const handleChange = (e) => {
         setEditableInfo({ ...editableInfo, [e.target.name]: e.target.value });
     };
+    
+    const handleToggleEditableMode = () => {
+        //make user info editable
+        setEditableMode(!editableMode);
+    }
+
     const handlePaymentInfoChange = (e) => {
         setPaymentInfo({ ...paymentInfo, [e.target.name]: e.target.value });
     };
@@ -143,10 +150,16 @@ const UserInfo = () => {
     if (!userInfo) return <div>Loading...</div>;
 
     return (
-        <div className="container">
-            <h2>User Information</h2>
-            <form onSubmit={handleUpdate}>
-                <div>
+        <div>
+            <div className="container-user" >
+                <h2>User Information</h2>
+            </div>
+        <div className="container-user">
+            <div className="info-column">
+                {editableMode ? (
+                    <form onSubmit={handleUpdate}>
+                        {/* User info inputs */}
+                        <div>
                     <label htmlFor="username">Username:</label>
                     <input
                         type="text"
@@ -155,51 +168,52 @@ const UserInfo = () => {
                         value={editableInfo.username}
                         onChange={handleChange}
                     />
-                </div>
-                <div>
-                    <label htmlFor="fullName">First and Last Name :</label>
-                    <input
-                        type="text"
-                        id="fullName"
-                        name="fullName"
-                        value={editableInfo.fullName}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="email">Email Address:</label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={editableInfo.email}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="phoneNumber">Phone Number:</label>
-                    <input
-                        type="text"
-                        id="phoneNumber"
-                        name="phoneNumber"
-                        value={editableInfo.phoneNumber}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="shippingAddress">Shipping Address:</label>
-                    <input
-                        type="text"
-                        id="shippingAddress"
-                        name="shippingAddress"
-                        value={editableInfo.shippingAddress}
-                        onChange={handleChange}
-                    />
-                </div>
-
-                <button type="submit">Update</button>
-            </form>
-            <button onClick={toggleChangePasswordForm}>Modifier le mot de passe</button>
+                        </div>
+                        <div>
+                            <label htmlFor="fullName">First and Last Name :</label>
+                            <input
+                                type="text"
+                                id="fullName"
+                                name="fullName"
+                                value={editableInfo.fullName}
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="email">Email Address:</label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                value={editableInfo.email}
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="phoneNumber">Phone Number:</label>
+                            <input
+                                type="text"
+                                id="phoneNumber"
+                                name="phoneNumber"
+                                value={editableInfo.phoneNumber}
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <button type="submit">Update</button>
+                    </form>
+                ) : (
+                    <div>
+                        <p>Username: {userInfo.username}</p>
+                        <p>First and Last Name: {userInfo.fullName}</p>
+                        <p>Email Address: {userInfo.email}</p>
+                        <p>Phone Number: {userInfo.phoneNumber}</p>
+                        <button onClick={handleToggleEditableMode}>Update</button>
+                    </div>
+                )}
+            </div>
+            
+            <div className="card-column">
+            <button onClick={toggleChangePasswordForm}>Change Password</button>
             {showChangePasswordForm && (
                     <form onSubmit={handleSubmitPasswordChange}>
                     <div>
@@ -265,16 +279,18 @@ const UserInfo = () => {
         />
     </div>
 
-        <button type="submit">Log Out</button>
+        <button type="submit">Update Card Info</button>
         </form>
         )}
         {Message && <p className={`${messageType}-message`}>{Message}</p>}
 
     <div>
-    <button onClick={handleLogout}>Log Out</button> {/* Ajout du bouton de déconnexion */} - {/* Bouton pour supprimer le compte */}
+    <button onClick={handleLogout} className="logout-btn">Log Out</button> {/* Ajout du bouton de déconnexion */} - {/* Bouton pour supprimer le compte */}
                 <button onClick={handleDeleteAccount} className="delete-account-btn">
                     Delete Account
                 </button>
+    </div>
+    </div>
     </div>
     </div>
     </div>

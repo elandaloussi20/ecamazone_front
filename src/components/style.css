@@ -5,7 +5,32 @@
     margin: 0 auto;
     padding: 20px;
 }
+.container-user {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 200px;
+    padding-right: 200px;
+}
+.info-column {
+    flex: 1;
+    margin-right: 20px;
+}
 
+.card-column {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-left: 20px;
+    justify-content: flex-end;
+}
+.card-column button {
+    width: 100%;
+    margin-bottom: 10px;
+}
+.container-user h2 {
+    padding-top: 55px;
+    
+}
 form {
     display: flex;
     flex-direction: column;
@@ -18,7 +43,13 @@ input[type="text"], input[type="email"], input[type="password"] {
     border: 1px solid #ccc;
     border-radius: 4px;
 }
-
+.delete-account-btn {
+    background-color: red;
+    width: 48% !important;
+}
+.logout-btn {
+    width: 49% !important;
+}
 button {
     padding: 10px 15px;
     background-color: #007bff;

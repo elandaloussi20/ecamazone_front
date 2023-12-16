@@ -20,7 +20,7 @@ const SignIn = () => {
         fullName: '',
         email: '',
         phoneNumber: '',
-        shippingAddress: '',
+        // shippingAddress: '',
         password: ''
     });
     const backendUrl = "http://127.0.0.1:3000";
@@ -91,16 +91,7 @@ const SignIn = () => {
                         onChange={handleChange}
                     />
                 </div>
-                <div>
-                    <label htmlFor="shippingAddress">Shipping Address :</label>
-                    <input
-                        type="text"
-                        id="shippingAddress"
-                        name="shippingAddress"
-                        value={formData.shippingAddress}
-                        onChange={handleChange}
-                    />
-                </div>
+                
                 <div>
                     <label htmlFor="password">Password:</label>
                     <input
