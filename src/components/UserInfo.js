@@ -178,6 +178,7 @@ const UserInfo = () => {
     //Handle Addresses
     const handleAddAddress = async (e) => {
         e.preventDefault();
+
         try {
             const response = await axios.post(`${backendUrl}/users/${authUser.id}/addresses`, newAddress);
             if (response.status === 201) {
@@ -353,9 +354,9 @@ const UserInfo = () => {
         </div>
 
             <div className="card-column">
-                {/* addresses part  */}
+            <h3>Adresses</h3>
+
             <form onSubmit={handleAddAddress} className='address-form'>
-                <h3>Adresses</h3>
                 <div>
                     <label htmlFor="street">Street:</label>
                     <input
@@ -396,8 +397,9 @@ const UserInfo = () => {
                         onChange={e => setNewAddress({...newAddress, country: e.target.value})}
                     />
                 </div>
+                <button type="submit" className='address-btn'>Add this address</button>
+
             </form>
-            <button type="submit" className='address-btn'>Add this address</button>
 
 
             <button onClick={toggleChangePasswordForm}>Change Password</button>
