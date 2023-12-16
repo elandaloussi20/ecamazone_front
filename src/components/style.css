@@ -12,6 +12,7 @@
     padding-right: 200px;
 }
 .info-column {
+    display:flex;
     flex: 1;
     margin-right: 20px;
 }
@@ -29,6 +30,8 @@
 }
 .container-user h2 {
     padding-top: 55px;
+    padding-bottom: 20px;
+    text-align: center;
     
 }
 form {
@@ -45,11 +48,16 @@ input[type="text"], input[type="email"], input[type="password"] {
 }
 .delete-account-btn {
     background-color: red;
-    width: 48% !important;
+    width: 49.5% !important;
 }
 .logout-btn {
     width: 49% !important;
 }
+
+.address-form {
+    padding-right: 20px;
+}
+
 button {
     padding: 10px 15px;
     background-color: #007bff;
