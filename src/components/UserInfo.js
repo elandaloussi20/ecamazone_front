@@ -271,7 +271,7 @@ const UserInfo = () => {
         {Message && <p className={`${messageType}-message`}>{Message}</p>}
 
     <div>
-    <button onClick={handleLogout}>Déconnexion</button> {/* Ajout du bouton de déconnexion */} - {/* Bouton pour supprimer le compte */}
+    <button onClick={handleLogout}>Log Out</button> {/* Ajout du bouton de déconnexion */} - {/* Bouton pour supprimer le compte */}
                 <button onClick={handleDeleteAccount} className="delete-account-btn">
                     Delete Account
                 </button>
