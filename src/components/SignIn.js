@@ -36,12 +36,12 @@ const SignIn = () => {
             //await axios.post('http://localhost:3000/users', formData);
             await axios.post(`${backendUrl}/users`, formData);
 
-            setMessage('Inscription réussie.'); // Afficher le message de confirmation
+            setMessage('Registration Successful.'); // Afficher le message de confirmation
             setMessageType('success');
 
         } catch (error) {
             console.error(error);
-            setMessage('Erreur lors de l\'inscription.'); // Afficher un message d'erreur
+            setMessage('Registration Error.'); // Afficher un message d'erreur
             setMessageType('error');
 
         }
@@ -52,7 +52,7 @@ const SignIn = () => {
             <h2>Inscription</h2>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label htmlFor="username">username :</label>
+                    <label htmlFor="username">Username:</label>
                     <input
                         type="text"
                         id="username"
@@ -62,7 +62,7 @@ const SignIn = () => {
                     />
                 </div>
                 <div>
-                    <label htmlFor="fullName">fullName :</label>
+                    <label htmlFor="fullName">First and Last Name:</label>
                     <input
                         type="text"
                         id="fullName"
@@ -72,7 +72,7 @@ const SignIn = () => {
                     />
                 </div>
                 <div>
-                    <label htmlFor="email">Email :</label>
+                    <label htmlFor="email">Email Address:</label>
                     <input
                         type="email"
                         id="email"
@@ -82,7 +82,7 @@ const SignIn = () => {
                     />
                 </div>
                 <div>
-                    <label htmlFor="phoneNumber">phoneNumber :</label>
+                    <label htmlFor="phoneNumber">Phone Number:</label>
                     <input
                         type="text"
                         id="phoneNumber"
@@ -92,7 +92,7 @@ const SignIn = () => {
                     />
                 </div>
                 <div>
-                    <label htmlFor="shippingAddress">shippingAddress :</label>
+                    <label htmlFor="shippingAddress">Shipping Address :</label>
                     <input
                         type="text"
                         id="shippingAddress"
@@ -102,7 +102,7 @@ const SignIn = () => {
                     />
                 </div>
                 <div>
-                    <label htmlFor="password">Mot de passe :</label>
+                    <label htmlFor="password">Password:</label>
                     <input
                         type="password"
                         id="password"
@@ -116,7 +116,7 @@ const SignIn = () => {
 
             </form>
             <div>
-            <button type="button" onClick={handleGoToLogin}>Se connecter</button> {/* Ajout du bouton pour revenir à la connexion */}
+            <button type="button" onClick={handleGoToLogin}>Sign In</button> {/* Ajout du bouton pour revenir à la connexion */}
 
             </div>
 

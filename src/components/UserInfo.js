@@ -54,13 +54,13 @@ const UserInfo = () => {
 
             } else {
 
-                setMessage('Erreur lors de la mise à jour.'); // Message d'erreur
+                setMessage('Update Error.'); // Message d'erreur
                 setMessageType('error');
 
             }
         } catch (error) {
             console.error(error);
-            setMessage('Erreur lors de la mise à jour.'); // Message d'erreur
+            setMessage('Update Error.'); // Message d'erreur
             setMessageType('error');
 
         }
@@ -74,17 +74,17 @@ const UserInfo = () => {
             // const response = await axios.put(`http://localhost:3000/users/${authUser.id}`, editableInfo);
             const response = await axios.put(`${backendUrl}/users/${authUser.id}`, editableInfo);
             if (response.status === 200) {
-                setUpdateMessage('Informations mises à jour avec succès.'); // Message de confirmation
+                setUpdateMessage('Successfully updated user info.'); // Message de confirmation
                 setMessageType('success');
 
             } else {
-                setUpdateMessage('Erreur lors de la mise à jour.'); // Message d'erreur
+                setUpdateMessage('Update Error.'); // Message d'erreur
                 setMessageType('error');
 
             }
         } catch (error) {
             console.error(error);
-            setUpdateMessage('Erreur lors de la mise à jour.'); // Message d'erreur
+            setUpdateMessage('Update Error.'); // Message d'erreur
             setMessageType('error');
 
         }
@@ -108,7 +108,7 @@ const UserInfo = () => {
                 // Gérez les erreurs ici
             }
         } catch (error) {
-            console.error('Erreur lors de la suppression du compte', error);
+            console.error('Error Deleting Account', error);
             // Gérez les erreurs ici
         }
     };
@@ -124,30 +124,30 @@ const UserInfo = () => {
         try {
             const response = await axios.post(`${backendUrl}/change-password/${authUser.id}`, passwords);
             if (response.status === 200) {
-                setUpdateMessage('Mot de passe mis à jour avec succès.');
+                setUpdateMessage('Successfully Updated Psasword.');
                 setMessageType('success');
 
             } else {
-                setUpdateMessage('Erreur lors de la mise à jour du mot de passe.');
+                setUpdateMessage('Password Update Error.');
                 setMessageType('error');
 
             }
         } catch (error) {
             console.error(error);
-            setUpdateMessage('Erreur lors de la mise à jour du mot de passe.');
+            setUpdateMessage('Password Update Error.');
             setMessageType('error');
 
         }
     };
 
-    if (!userInfo) return <div>Chargement...</div>;
+    if (!userInfo) return <div>Loading...</div>;
 
     return (
         <div className="container">
-            <h2>Informations de l'utilisateur</h2>
+            <h2>User Information</h2>
             <form onSubmit={handleUpdate}>
                 <div>
-                    <label htmlFor="username">username :</label>
+                    <label htmlFor="username">Username:</label>
                     <input
                         type="text"
                         id="username"
@@ -157,7 +157,7 @@ const UserInfo = () => {
                     />
                 </div>
                 <div>
-                    <label htmlFor="fullName">fullName :</label>
+                    <label htmlFor="fullName">First and Last Name :</label>
                     <input
                         type="text"
                         id="fullName"
@@ -167,7 +167,7 @@ const UserInfo = () => {
                     />
                 </div>
                 <div>
-                    <label htmlFor="email">Email :</label>
+                    <label htmlFor="email">Email Address:</label>
                     <input
                         type="email"
                         id="email"
@@ -177,7 +177,7 @@ const UserInfo = () => {
                     />
                 </div>
                 <div>
-                    <label htmlFor="phoneNumber">phoneNumber :</label>
+                    <label htmlFor="phoneNumber">Phone Number:</label>
                     <input
                         type="text"
                         id="phoneNumber"
@@ -187,7 +187,7 @@ const UserInfo = () => {
                     />
                 </div>
                 <div>
-                    <label htmlFor="shippingAddress">shippingAddress :</label>
+                    <label htmlFor="shippingAddress">Shipping Address:</label>
                     <input
                         type="text"
                         id="shippingAddress"
@@ -197,13 +197,13 @@ const UserInfo = () => {
                     />
                 </div>
 
-                <button type="submit">Mettre à jour</button>
+                <button type="submit">Update</button>
             </form>
             <button onClick={toggleChangePasswordForm}>Modifier le mot de passe</button>
             {showChangePasswordForm && (
                     <form onSubmit={handleSubmitPasswordChange}>
                     <div>
-                        <label htmlFor="oldPassword">Ancien mot de passe :</label>
+                        <label htmlFor="oldPassword">Previous Password:</label>
                         <input
                             type="password"
                             id="oldPassword"
@@ -213,7 +213,7 @@ const UserInfo = () => {
                         />
                     </div>
                     <div>
-                        <label htmlFor="newPassword">Nouveau mot de passe :</label>
+                        <label htmlFor="newPassword">New Password:</label>
                         <input
                             type="password"
                             id="newPassword"
@@ -222,20 +222,20 @@ const UserInfo = () => {
                             onChange={handlePasswordChange}
                         />
                     </div>
-                    <button type="submit">Changer le mot de passe</button>
+                    <button type="submit">Update Password</button>
                     </form>
             )}
 {updateMessage && <p className={`${messageType}-message`}>{updateMessage}</p>}
             <div>
 
             <button onClick={() => setShowPaymentForm(!showPaymentForm)}>
-                Ajouter une méthode de paiement
+                Add a Payment Method
             </button>
 
             {showPaymentForm && (
                 <form onSubmit={handlePaymentSubmit}>
                     <div>
-        <label htmlFor="type">Card type:</label>
+        <label htmlFor="type">Card Type:</label>
         <input
             type="text"
             id="type"
@@ -245,7 +245,7 @@ const UserInfo = () => {
         />
     </div>
     <div>
-        <label htmlFor="cardNumber">CardNumber :</label>
+        <label htmlFor="cardNumber">Card Number:</label>
         <input
             type="text"
             id="cardNumber"
@@ -255,7 +255,7 @@ const UserInfo = () => {
         />
     </div>
     <div>
-        <label htmlFor="threeDigitCode">threeDigitCode :</label>
+        <label htmlFor="threeDigitCode">Three-digit Code:</label>
         <input
             type="text"
             id="threeDigitCode"
@@ -265,7 +265,7 @@ const UserInfo = () => {
         />
     </div>
 
-        <button type="submit">Soumettre la méthode de paiement</button>
+        <button type="submit">Log Out</button>
         </form>
         )}
         {Message && <p className={`${messageType}-message`}>{Message}</p>}
@@ -273,7 +273,7 @@ const UserInfo = () => {
     <div>
     <button onClick={handleLogout}>Déconnexion</button> {/* Ajout du bouton de déconnexion */} - {/* Bouton pour supprimer le compte */}
                 <button onClick={handleDeleteAccount} className="delete-account-btn">
-                    Supprimer le compte
+                    Delete Account
                 </button>
     </div>
     </div>

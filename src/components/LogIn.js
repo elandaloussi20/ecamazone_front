@@ -43,10 +43,10 @@ const LogIn = () => {
 
     return (
         <div className="container">
-            <h2>Connexion</h2>
+            <h2>Login</h2>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label htmlFor="username">Nom d'utilisateur:</label>
+                    <label htmlFor="username">Username:</label>
                     <input
                         type="text"
                         id="username"
@@ -56,7 +56,7 @@ const LogIn = () => {
                     />
                 </div>
                 <div>
-                    <label htmlFor="password">Mot de passe:</label>
+                    <label htmlFor="password">Password:</label>
                     <input
                         type="password"
                         id="password"
@@ -65,12 +65,12 @@ const LogIn = () => {
                         onChange={handleChange}
                     />
                 </div>
-                <button type="submit">Se connecter</button>
+                <button type="submit">Sign In</button>
             </form>
             {errorMessage && <p className="error-message">{errorMessage}</p>}
 
             <div>
-            <button type="button" onClick={handleGoToSignUp}>S'inscrire</button> {/* Ajout du bouton */}
+            <button type="button" onClick={handleGoToSignUp}>Sign Up</button> {/* Ajout du bouton */}
             </div>
         </div>
     );
