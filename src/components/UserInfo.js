@@ -203,10 +203,10 @@ const UserInfo = () => {
                     </form>
                 ) : (
                     <div>
-                        <p>Username: {userInfo.username}</p>
-                        <p>First and Last Name: {userInfo.fullName}</p>
-                        <p>Email Address: {userInfo.email}</p>
-                        <p>Phone Number: {userInfo.phoneNumber}</p>
+                        <p><b>Username:</b> {userInfo.username}</p>
+                        <p><b>First and Last Name:</b> {userInfo.fullName}</p>
+                        <p><b>Email Address:</b> {userInfo.email}</p>
+                        <p><b>Phone Number:</b> {userInfo.phoneNumber}</p>
                         <button onClick={handleToggleEditableMode}>Update</button>
                     </div>
                 )}
