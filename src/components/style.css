@@ -13,6 +13,7 @@
 }
 .info-column {
     display:flex;
+    flex-direction: column;
     flex: 1;
     margin-right: 20px;
 }
@@ -22,7 +23,12 @@
     flex-direction: column;
     flex: 1;
     margin-left: 20px;
-    justify-content: flex-end;
+    /* justify-content: flex-end; */
+}
+.addresses {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 .card-column button {
     width: 100%;
@@ -38,6 +44,7 @@ form {
     display: flex;
     flex-direction: column;
     gap: 15px;
+
 }
 
 input[type="text"], input[type="email"], input[type="password"] {
@@ -45,17 +52,14 @@ input[type="text"], input[type="email"], input[type="password"] {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    box-sizing: border-box;
 }
 .delete-account-btn {
     background-color: red;
     width: 49.5% !important;
 }
 .logout-btn {
-    width: 49% !important;
-}
-
-.address-form {
-    padding-right: 20px;
+    width: 49.5% !important;
 }
 
 button {

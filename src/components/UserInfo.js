@@ -300,73 +300,74 @@ const UserInfo = () => {
                         <button onClick={handleToggleEditableMode}>Update</button>
                     </div>
                 )}
-               
                 
+                    <h3>Adresses</h3>
+                    <div className="addresses">
+                        {addresses.map((address) => (
+                        <div key={address.id} className="address">
+                            {editingAddressId === address.id ? (
+                            <div>
+                                <input
+                                type="text"
+                                value={editedAddress.street || address.street}
+                                onChange={e => setEditedAddress({...editedAddress, street: e.target.value})}
+                                />
+                                <input
+                                    type="text"
+                                    value={editedAddress.city || address.city}
+                                    onChange={e => setEditedAddress({...editedAddress, city: e.target.value})}
+                                />
+                                <input
+                                    type="text"
+                                    value={editedAddress.zipCode || address.zipCode}
+                                    onChange={e => setEditedAddress({...editedAddress, zipCode: e.target.value})}
+                                />
+                                <input
+                                    type="text"
+                                    value={editedAddress.country || address.country}
+                                    onChange={e => setEditedAddress({...editedAddress, country: e.target.value})}
+                                />
+                            </div>
+                        ) : (
+                            
+                            <div className='address-list'>
+                                <p>Street: {address.street}</p>
+                                <p>City: {address.city}</p>
+                                <p>Postal Code: {address.zipCode}</p>
+                                <p>Country: {address.country}</p>
+                            </div>
+                        )}
+                        {editingAddressId === address.id ? (
+                                <button onClick={() => saveAddress(address.id)}>Save</button>
+                            ) : (
+                                <button onClick={() => startEditing(address)}>Edit</button>
+                            )}
+                            -
+                            <button onClick={() => handleDeleteAddress(address.id)}>Delete</button>
+                    </div>
+                    ))}
+                </div>
             
             </div>
             {/* addresses part */}
             
-            <div className="addresses">
-            {addresses.map((address) => (
-            <div key={address.id} className="address">
-                {editingAddressId === address.id ? (
-                    <div>
-                        <input
-                        type="text"
-                        value={editedAddress.street || address.street}
-                        onChange={e => setEditedAddress({...editedAddress, street: e.target.value})}
-                        />
-                        <input
-                            type="text"
-                            value={editedAddress.city || address.city}
-                            onChange={e => setEditedAddress({...editedAddress, city: e.target.value})}
-                        />
-                        <input
-                            type="text"
-                            value={editedAddress.zipCode || address.zipCode}
-                            onChange={e => setEditedAddress({...editedAddress, zipCode: e.target.value})}
-                        />
-                        <input
-                            type="text"
-                            value={editedAddress.country || address.country}
-                            onChange={e => setEditedAddress({...editedAddress, country: e.target.value})}
-                        />
-                    </div>
-                ) : (
-                    
-                    <div>
-                        <p>Street: {address.street}</p>
-                        <p>City: {address.city}</p>
-                        <p>Postal Code: {address.zipCode}</p>
-                        <p>Country: {address.country}</p>
-                    </div>
-                )}
-                {editingAddressId === address.id ? (
-                         <button onClick={() => saveAddress(address.id)}>Save</button>
-                     ) : (
-                         <button onClick={() => startEditing(address)}>Edit</button>
-                     )}
-                     -
-                     <button onClick={() => handleDeleteAddress(address.id)}>Delete</button>
-                </div>
-            ))}
-        </div>
+            
 
             <div className="card-column">
                 {/* addresses part  */}
-            <form onSubmit={handleAddAddress} className='address-form'>
-                <h3>Adresses</h3>
-                <div>
-                    <label htmlFor="street">Street:</label>
-                    <input
-                        type="text"
-                        id="street"
-                        name="street"
-                        value={newAddress.street}
-                        onChange={e => setNewAddress({...newAddress, street: e.target.value})}
-                    />
-                </div>
-                <div>
+                <h3>Add an address</h3>
+                <form onSubmit={handleAddAddress} className='address-form'>
+                    <div>
+                        <label htmlFor="street">Street:</label>
+                        <input
+                            type="text"
+                            id="street"
+                            name="street"
+                            value={newAddress.street}
+                            onChange={e => setNewAddress({...newAddress, street: e.target.value})}
+                        />
+                    </div>
+                    <div>
                     <label htmlFor="city">City:</label>
                     <input
                         type="text"
@@ -375,7 +376,7 @@ const UserInfo = () => {
                         value={newAddress.city}
                         onChange={e => setNewAddress({...newAddress, city: e.target.value})}
                     />
-                </div>
+                    </div>
                 <div>
                     <label htmlFor="zipCode">Postal Code:</label>
                     <input
@@ -396,8 +397,9 @@ const UserInfo = () => {
                         onChange={e => setNewAddress({...newAddress, country: e.target.value})}
                     />
                 </div>
+                <button type="submit" className='address-btn'>Add this address</button>
             </form>
-            <button type="submit" className='address-btn'>Add this address</button>
+            
 
 
             <button onClick={toggleChangePasswordForm}>Change Password</button>
