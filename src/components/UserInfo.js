@@ -178,6 +178,7 @@ const UserInfo = () => {
     //Handle Addresses
     const handleAddAddress = async (e) => {
         e.preventDefault();
+
         try {
             const response = await axios.post(`${backendUrl}/users/${authUser.id}/addresses`, newAddress);
             if (response.status === 201) {
@@ -399,7 +400,7 @@ const UserInfo = () => {
                 </div>
                 <button type="submit" className='address-btn'>Add this address</button>
             </form>
-            
+            <button type="submit" className='address-btn'>Add this address</button>
 
 
             <button onClick={toggleChangePasswordForm}>Change Password</button>
