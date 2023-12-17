@@ -400,7 +400,6 @@ const UserInfo = () => {
                 </div>
                 <button type="submit" className='address-btn'>Add this address</button>
             </form>
-            <button type="submit" className='address-btn'>Add this address</button>
 
 
             <button onClick={toggleChangePasswordForm}>Change Password</button>
