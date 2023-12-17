@@ -109,10 +109,13 @@ const UserInfo = () => {
             // const response = await axios.put(`http://localhost:3000/users/${authUser.id}`, editableInfo);
             const response = await axios.put(`${backendUrl}/users/${authUser.id}`, editableInfo);
             if (response.status === 200) {
-                setUpdateMessage('Successfully updated user info.'); // Message de confirmation
+                setUserInfo(editableInfo); // Mettre à jour userInfo avec les données éditées
+                setUpdateMessage('Successfully updated user info.');
                 setMessageType('success');
-
-            } else {
+                setEditableMode(false); // Optionnel, pour sortir du mode édition
+                // ...
+            }
+             else {
                 setUpdateMessage('Update Error.'); // Message d'erreur
                 setMessageType('error');
 
@@ -289,7 +292,7 @@ const UserInfo = () => {
                                 onChange={handleChange}
                             />
                         </div>
-                        <button type="submit" onClick={handleToggleEditableMode}>Update</button>
+                        <button type="submit">Update</button>
                     </form>
                 ) : (
                     <div>
