@@ -49,7 +49,7 @@ const SignIn = () => {
 
     return (
         <div className="container">
-            <h2>Inscription</h2>
+            <h2>New Account</h2>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="username">Username:</label>
@@ -102,7 +102,7 @@ const SignIn = () => {
                         onChange={handleChange}
                     />
                 </div>
-                <button type="submit">S'inscrire</button>
+                <button type="submit">Sign Up</button>
                 {message && <p className={`${messageType}-message`}>{message}</p>}
 
             </form>

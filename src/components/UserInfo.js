@@ -159,7 +159,7 @@ const UserInfo = () => {
         try {
             const response = await axios.post(`${backendUrl}/change-password/${authUser.id}`, passwords);
             if (response.status === 200) {
-                setUpdateMessage('Successfully Updated Psasword.');
+                setUpdateMessage('Successfully Updated Password.');
                 setMessageType('success');
 
             } else {
@@ -289,7 +289,7 @@ const UserInfo = () => {
                                 onChange={handleChange}
                             />
                         </div>
-                        <button type="submit">Update</button>
+                        <button type="submit" onClick={handleToggleEditableMode}>Update</button>
                     </form>
                 ) : (
                     <div>
@@ -301,6 +301,8 @@ const UserInfo = () => {
                         <button onClick={handleToggleEditableMode}>Update</button>
                     </div>
                 )}
+                {updateMessage && <p className={`${messageType}-message`}>{updateMessage}</p>}
+
                 
                     <h3>Adresses</h3>
                     <div className="addresses">
@@ -428,7 +430,7 @@ const UserInfo = () => {
                     <button type="submit">Update Password</button>
                     </form>
             )}
-{updateMessage && <p className={`${messageType}-message`}>{updateMessage}</p>}
+{/* {updateMessage && <p className={`${messageType}-message`}>{updateMessage}</p>} */}
             <div>
 
             <button onClick={() => setShowPaymentForm(!showPaymentForm)}>
