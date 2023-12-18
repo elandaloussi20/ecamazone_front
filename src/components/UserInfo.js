@@ -337,10 +337,10 @@ const UserInfo = () => {
                         ) : (
                             
                             <div className='address-list'>
-                                <p>Street: {address.street}</p>
-                                <p>City: {address.city}</p>
-                                <p>Postal Code: {address.zipCode}</p>
-                                <p>Country: {address.country}</p>
+                                <p><b>Street:</b> {address.street}</p>
+                                <p><b>City: </b>{address.city}</p>
+                                <p><b>Postal Code:</b>{address.zipCode}</p>
+                                <p><b>Country: </b>{address.country}</p>
                             </div>
                         )}
                         {editingAddressId === address.id ? (
